@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useStencilWc } from "../hooks/useStencilWc";
 import {
-  runWatchCompilation,
+  runCompilation,
   saveStencilComponentFile,
 } from "../lib/stencil-container";
 import BuildOutput from "./BuildOutput";
@@ -38,7 +38,7 @@ export default function Editor() {
         setOutput(data);
       },
     });
-    runWatchCompilation(wc, writeableStream);
+    runCompilation(wc, writeableStream);
   }, [wc, text, setOutput]);
 
   return (

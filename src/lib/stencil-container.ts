@@ -31,7 +31,7 @@ export async function saveStencilComponentFile(wc: WebContainer, data: string) {
   await wc.fs.writeFile("component.tsx", data);
 }
 
-export async function runWatchCompilation(
+export async function runCompilation(
   wc: WebContainer,
   stream: WritableStream
 ) {
