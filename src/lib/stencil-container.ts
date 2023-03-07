@@ -34,24 +34,27 @@ app.listen(port, () => {
   },
 };
 
+/**
+ * This just does initial setup for a web container
+ */
 export async function createStencilContainer() {
-  console.log('running');
-  let webcontainerInstance = await WebContainer.boot();
+  const webcontainerInstance = await WebContainer.boot();
 
   await webcontainerInstance.mount(files);
-
-  // install no-browser-compat Stencil build
   let install = await webcontainerInstance.spawn('npm', ['i'], {
     // output: false
   });
   await install.exit
+  return webcontainerInstance
+}
 
-  console.log('ran!');
 
-  const result = await webcontainerInstance.spawn('npx', ['stencil', 'info'])
+export async function runStencilInfo(wc: WebContainer) {
+  const result = await wc.spawn('npx', ['stencil', 'info'])
   result.output.pipeTo(new WritableStream({
     write(data) {
       console.log(data);
     }
   }));
+  await result.exit
 }

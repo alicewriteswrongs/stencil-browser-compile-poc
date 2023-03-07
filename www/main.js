@@ -785,7 +785,7 @@
             }
             return children;
           }
-          function createContext(defaultValue) {
+          function createContext2(defaultValue) {
             var context = {
               $$typeof: REACT_CONTEXT_TYPE,
               // As a workaround to support multiple concurrent renderers, we categorize
@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState(initialState) {
+          function useState2(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1093,11 +1093,11 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useReducer(reducer, initialArg, init);
           }
-          function useRef(initialValue) {
+          function useRef2(initialValue) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect(create, deps) {
+          function useEffect2(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1865,7 +1865,7 @@
           exports.Suspense = REACT_SUSPENSE_TYPE;
           exports.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = ReactSharedInternals;
           exports.cloneElement = cloneElement$1;
-          exports.createContext = createContext;
+          exports.createContext = createContext2;
           exports.createElement = createElement$1;
           exports.createFactory = createFactory;
           exports.createRef = createRef;
@@ -1879,15 +1879,15 @@
           exports.useContext = useContext;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect;
+          exports.useEffect = useEffect2;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
           exports.useLayoutEffect = useLayoutEffect;
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
-          exports.useRef = useRef;
-          exports.useState = useState;
+          exports.useRef = useRef2;
+          exports.useState = useState2;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -24399,15 +24399,15 @@
   });
 
   // src/main.tsx
-  var import_react = __toESM(require_react(), 1);
+  var import_react3 = __toESM(require_react(), 1);
   var import_client = __toESM(require_client(), 1);
 
-  // src/App.tsx
-  var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
-  function App() {
-    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "App", children: "HEY" });
-  }
-  var App_default = App;
+  // src/context/WcContext.ts
+  var import_react = __toESM(require_react(), 1);
+  var WcContext = (0, import_react.createContext)(null);
+
+  // src/hooks/useStencilWc.ts
+  var import_react2 = __toESM(require_react(), 1);
 
   // node_modules/@webcontainer/api/dist/index.js
   var proxyMarker = Symbol("Comlink.proxy");
@@ -24991,27 +24991,41 @@ app.listen(port, () => {
     }
   };
   async function createStencilContainer() {
-    console.log("running");
-    let webcontainerInstance = await WebContainer.boot();
+    const webcontainerInstance = await WebContainer.boot();
     await webcontainerInstance.mount(files);
     let install = await webcontainerInstance.spawn("npm", ["i"], {
       // output: false
     });
     await install.exit;
-    console.log("ran!");
-    const result = await webcontainerInstance.spawn("npx", ["stencil", "info"]);
-    result.output.pipeTo(new WritableStream({
-      write(data) {
-        console.log(data);
-      }
-    }));
+    return webcontainerInstance;
   }
+
+  // src/hooks/useStencilWc.ts
+  function useStencilWc() {
+    const [wc, setWc] = (0, import_react2.useState)(null);
+    const mutexey = (0, import_react2.useRef)(false);
+    (0, import_react2.useEffect)(() => {
+      if (mutexey.current === true) {
+        return;
+      }
+      mutexey.current = true;
+      createStencilContainer().then(setWc);
+    }, []);
+    return wc;
+  }
+
+  // src/App.tsx
+  var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+  function App() {
+    const wc = useStencilWc();
+    return wc === null ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WcContext.Provider, { value: wc, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "App", children: "HEY" }) }) : "loading...";
+  }
+  var App_default = App;
 
   // src/main.tsx
   var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
-  createStencilContainer();
   import_client.default.createRoot(document.getElementById("root")).render(
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App_default, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react3.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App_default, {}) })
   );
 })();
 /*! Bundled license information:

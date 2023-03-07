@@ -4,8 +4,6 @@ import App from './App'
 import './index.css'
 import { createStencilContainer } from './lib/stencil-container'
 
-createStencilContainer()
-
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <App />
