@@ -14,6 +14,8 @@ then
 just dev
 ```
 
+and open <http://localhost:3000/>
+
 You may need to
 
 ```sh
