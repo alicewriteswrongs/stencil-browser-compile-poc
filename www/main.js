@@ -1071,7 +1071,7 @@
             }
             return dispatcher;
           }
-          function useContext(Context) {
+          function useContext2(Context) {
             var dispatcher = resolveDispatcher();
             {
               if (Context._context !== void 0) {
@@ -1085,7 +1085,7 @@
             }
             return dispatcher.useContext(Context);
           }
-          function useState2(initialState) {
+          function useState3(initialState) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useState(initialState);
           }
@@ -1097,7 +1097,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useRef(initialValue);
           }
-          function useEffect2(create, deps) {
+          function useEffect3(create, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useEffect(create, deps);
           }
@@ -1109,7 +1109,7 @@
             var dispatcher = resolveDispatcher();
             return dispatcher.useLayoutEffect(create, deps);
           }
-          function useCallback(callback, deps) {
+          function useCallback2(callback, deps) {
             var dispatcher = resolveDispatcher();
             return dispatcher.useCallback(callback, deps);
           }
@@ -1875,11 +1875,11 @@
           exports.memo = memo;
           exports.startTransition = startTransition;
           exports.unstable_act = act;
-          exports.useCallback = useCallback;
-          exports.useContext = useContext;
+          exports.useCallback = useCallback2;
+          exports.useContext = useContext2;
           exports.useDebugValue = useDebugValue;
           exports.useDeferredValue = useDeferredValue;
-          exports.useEffect = useEffect2;
+          exports.useEffect = useEffect3;
           exports.useId = useId;
           exports.useImperativeHandle = useImperativeHandle;
           exports.useInsertionEffect = useInsertionEffect;
@@ -1887,7 +1887,7 @@
           exports.useMemo = useMemo;
           exports.useReducer = useReducer;
           exports.useRef = useRef2;
-          exports.useState = useState2;
+          exports.useState = useState3;
           exports.useSyncExternalStore = useSyncExternalStore;
           exports.useTransition = useTransition;
           exports.version = ReactVersion;
@@ -2383,9 +2383,9 @@
           if (typeof __REACT_DEVTOOLS_GLOBAL_HOOK__ !== "undefined" && typeof __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart === "function") {
             __REACT_DEVTOOLS_GLOBAL_HOOK__.registerInternalModuleStart(new Error());
           }
-          var React2 = require_react();
+          var React3 = require_react();
           var Scheduler = require_scheduler();
-          var ReactSharedInternals = React2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           var suppressWarning = false;
           function setSuppressWarning(newSuppressWarning) {
             {
@@ -3990,7 +3990,7 @@
             {
               if (props.value == null) {
                 if (typeof props.children === "object" && props.children !== null) {
-                  React2.Children.forEach(props.children, function(child) {
+                  React3.Children.forEach(props.children, function(child) {
                     if (child == null) {
                       return;
                     }
@@ -12437,7 +12437,7 @@
             }
           }
           var fakeInternalInstance = {};
-          var emptyRefsObject = new React2.Component().refs;
+          var emptyRefsObject = new React3.Component().refs;
           var didWarnAboutStateAssignmentForComponent;
           var didWarnAboutUninitializedState;
           var didWarnAboutGetSnapshotBeforeUpdateWithoutDidUpdate;
@@ -23515,7 +23515,7 @@
       if (true) {
         (function() {
           "use strict";
-          var React2 = require_react();
+          var React3 = require_react();
           var REACT_ELEMENT_TYPE = Symbol.for("react.element");
           var REACT_PORTAL_TYPE = Symbol.for("react.portal");
           var REACT_FRAGMENT_TYPE = Symbol.for("react.fragment");
@@ -23541,7 +23541,7 @@
             }
             return null;
           }
-          var ReactSharedInternals = React2.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
+          var ReactSharedInternals = React3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
           function error(format) {
             {
               {
@@ -24376,11 +24376,11 @@
               return jsxWithValidation(type, props, key, false);
             }
           }
-          var jsx3 = jsxWithValidationDynamic;
-          var jsxs = jsxWithValidationStatic;
+          var jsx5 = jsxWithValidationDynamic;
+          var jsxs2 = jsxWithValidationStatic;
           exports.Fragment = REACT_FRAGMENT_TYPE;
-          exports.jsx = jsx3;
-          exports.jsxs = jsxs;
+          exports.jsx = jsx5;
+          exports.jsxs = jsxs2;
         })();
       }
     }
@@ -24399,7 +24399,7 @@
   });
 
   // src/main.tsx
-  var import_react3 = __toESM(require_react(), 1);
+  var import_react4 = __toESM(require_react(), 1);
   var import_client = __toESM(require_client(), 1);
 
   // src/context/WcContext.ts
@@ -24955,41 +24955,42 @@
     return new URL(window.WEBCONTAINER_API_IFRAME_URL ?? DEFAULT_IFRAME_SOURCE);
   }
 
-  // src/lib/stencil-container.ts
+  // src/lib/stencil-container-files.ts
   var files = {
-    "index.js": {
+    "index.tsx": {
       file: {
-        contents: `
-import express from 'express';
-const app = express();
-const port = 3111;
-
-app.get('/', (req, res) => {
-  res.send('Welcome to a WebContainers app! \u{1F973}');
-});
-
-app.listen(port, () => {
-  console.log(\`App is live at http://localhost:\${port}\`);
-});`
+        contents: ""
       }
     },
     "package.json": {
       file: {
-        contents: JSON.stringify(
-          {
-            "name": "stencil-browser-playground",
-            "type": "module",
-            "dependencies": {
-              // 3.1.0-dev.1678219461.af742f8 is a build of ap/remove-browser-support
-              // performed on 3/7/23. See here:
-              // https://github.com/ionic-team/stencil/actions/runs/4358070181/jobs/7618247756
-              "@stencil/core": "3.1.0-dev.1678219461.af742f8"
-            }
+        contents: JSON.stringify({
+          name: "stencil-browser-playground",
+          type: "module",
+          dependencies: {
+            // 3.1.0-dev.1678219461.af742f8 is a build of ap/remove-browser-support
+            // performed on 3/7/23. See here:
+            // https://github.com/ionic-team/stencil/actions/runs/4358070181/jobs/7618247756
+            "@stencil/core": "3.1.0-dev.1678219461.af742f8"
           }
-        )
+        })
+      }
+    },
+    "compile.js": {
+      file: {
+        contents: `
+import { transpileSync } from '@stencil/core/compiler/stencil.js';
+import { readFileSync } from 'fs';
+
+const componentString = String(readFileSync("./component.tsx"));
+const transpiled = transpileSync(componentString);
+console.log(transpiled.code);
+  `
       }
     }
   };
+
+  // src/lib/stencil-container.ts
   async function createStencilContainer() {
     const webcontainerInstance = await WebContainer.boot();
     await webcontainerInstance.mount(files);
@@ -24999,9 +25000,16 @@ app.listen(port, () => {
     await install.exit;
     return webcontainerInstance;
   }
+  async function saveStencilComponentFile(wc, data) {
+    await wc.fs.writeFile("component.tsx", data);
+  }
+  async function runWatchCompilation(wc, stream) {
+    const result = await wc.spawn("node", ["compile.js"]);
+    result.output.pipeTo(stream);
+  }
 
   // src/hooks/useStencilWc.ts
-  function useStencilWc() {
+  function useCreateStencilWc() {
     const [wc, setWc] = (0, import_react2.useState)(null);
     const mutexey = (0, import_react2.useRef)(false);
     (0, import_react2.useEffect)(() => {
@@ -25013,19 +25021,73 @@ app.listen(port, () => {
     }, []);
     return wc;
   }
+  function useStencilWc() {
+    const wc = (0, import_react2.useContext)(WcContext);
+    if (wc === null) {
+      throw "Hey no WC!";
+    }
+    return wc;
+  }
+
+  // src/components/Editor.tsx
+  var import_react3 = __toESM(require_react(), 1);
+
+  // src/components/BuildOutput.tsx
+  var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+  function BuildOutput(props) {
+    const { output } = props;
+    return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "build-output", children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("pre", { className: "code", children: output }) });
+  }
+
+  // src/components/Editor.tsx
+  var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+  function Editor() {
+    const wc = useStencilWc();
+    const [text, setText] = (0, import_react3.useState)("");
+    const [output, setOutput] = (0, import_react3.useState)("");
+    const onChange = (0, import_react3.useCallback)(
+      (e) => {
+        e.preventDefault();
+        setText(e.target.value);
+      },
+      [setText]
+    );
+    (0, import_react3.useEffect)(() => {
+      saveStencilComponentFile(wc, text);
+    }, [text, wc]);
+    const updateOutput = (0, import_react3.useCallback)(
+      (data) => {
+        setOutput((cur) => cur + data);
+      },
+      [setOutput]
+    );
+    const compile = (0, import_react3.useCallback)(() => {
+      const writeableStream = new WritableStream({
+        write(data) {
+          setOutput(data);
+        }
+      });
+      runWatchCompilation(wc, writeableStream);
+    }, [wc, text, setOutput]);
+    return /* @__PURE__ */ (0, import_jsx_runtime2.jsxs)("div", { className: "editor", children: [
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("textarea", { value: text, onChange }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("div", { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)("button", { onClick: compile, children: "Compile!" }) }),
+      /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(BuildOutput, { output })
+    ] });
+  }
 
   // src/App.tsx
-  var import_jsx_runtime = __toESM(require_jsx_runtime(), 1);
+  var import_jsx_runtime3 = __toESM(require_jsx_runtime(), 1);
   function App() {
-    const wc = useStencilWc();
-    return wc === null ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WcContext.Provider, { value: wc, children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "App", children: "HEY" }) }) : "loading...";
+    const wc = useCreateStencilWc();
+    return wc !== null ? /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(WcContext.Provider, { value: wc, children: /* @__PURE__ */ (0, import_jsx_runtime3.jsx)(Editor, {}) }) : /* @__PURE__ */ (0, import_jsx_runtime3.jsx)("div", { className: "loading", children: "loading..." });
   }
   var App_default = App;
 
   // src/main.tsx
-  var import_jsx_runtime2 = __toESM(require_jsx_runtime(), 1);
+  var import_jsx_runtime4 = __toESM(require_jsx_runtime(), 1);
   import_client.default.createRoot(document.getElementById("root")).render(
-    /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(import_react3.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime2.jsx)(App_default, {}) })
+    /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(import_react4.default.StrictMode, { children: /* @__PURE__ */ (0, import_jsx_runtime4.jsx)(App_default, {}) })
   );
 })();
 /*! Bundled license information:

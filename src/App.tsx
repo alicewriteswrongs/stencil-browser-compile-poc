@@ -9,12 +9,12 @@ import Editor from "./components/Editor";
 function App() {
   const wc = useCreateStencilWc();
 
-  return wc === null ? (
+  return wc !== null ? (
     <WcContext.Provider value={wc}>
       <Editor />
     </WcContext.Provider>
   ) : (
-    "loading..."
+    <div className="loading">loading...</div>
   );
 }
 
