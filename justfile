@@ -10,3 +10,9 @@ build:
     npx esbuild src/main.tsx \
         --bundle \
         --outfile=build/main.js
+
+fmt:
+    npx prettier --write \
+        src/**/*.ts \
+        src/**/*.tsx \
+        *.js

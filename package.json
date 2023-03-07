@@ -5,6 +5,7 @@
   "type": "module",
   "dependencies": {
     "@webcontainer/api": "^1.0.2",
+    "prettier": "^2.8.4",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "xterm": "^5.1.0"
