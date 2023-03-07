@@ -6,7 +6,6 @@ let ctx = await esbuild.context({
   bundle: true,
   outdir: "www",
   entryPoints: ["src/main.tsx"],
-  logLevel: "info",
 });
 
 // The return value tells us where esbuild's local server is
