@@ -4,13 +4,14 @@ import "./App.css";
 import { createStencilContainer } from "./lib/stencil-container";
 import { WcContext } from "./context/WcContext";
 import { useCreateStencilWc } from "./hooks/useStencilWc";
+import Editor from "./components/Editor";
 
 function App() {
   const wc = useCreateStencilWc();
 
   return wc === null ? (
     <WcContext.Provider value={wc}>
-      <div className="App">HEY</div>
+      <Editor />
     </WcContext.Provider>
   ) : (
     "loading..."
