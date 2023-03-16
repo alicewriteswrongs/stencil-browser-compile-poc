@@ -15,5 +15,10 @@
     "@types/react-dom": "^18.0.10",
     "esbuild": "^0.17.11",
     "typescript": "^4.9.3"
+  },
+  "scripts": {
+    "fmt": "npx prettier --write src/**/*.ts src/**/*.tsx *.js",
+    "build": "./build.sh",
+    "dev": "node devserver.js"
   }
 }

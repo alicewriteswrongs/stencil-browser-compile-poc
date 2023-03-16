@@ -11,13 +11,7 @@ npm ci
 then
 
 ```sh
-just dev
+npm run dev
 ```
 
 and open <http://localhost:3000/>
-
-You may need to
-
-```sh
-brew install just
-```
