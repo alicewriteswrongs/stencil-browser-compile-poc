@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useStencilWc } from "../hooks/useStencilWc";
+import { PLACEHOLDER_COMPONENT } from "../lib/placeholders";
 import {
   runCompilation,
   saveStencilComponentFile,
@@ -10,7 +11,7 @@ import "./Editor.css";
 export default function Editor() {
   const wc = useStencilWc();
 
-  const [text, setText] = useState("");
+  const [text, setText] = useState(PLACEHOLDER_COMPONENT);
   const [output, setOutput] = useState("");
 
   const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
