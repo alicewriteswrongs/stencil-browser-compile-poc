@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "dependencies": {
+    "@stencil/core": "^3.2.0",
     "@webcontainer/api": "^1.0.2",
     "prettier": "^2.8.4",
     "react": "^18.2.0",

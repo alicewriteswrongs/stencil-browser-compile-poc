@@ -1,3 +1,4 @@
+import { TranspileOptions } from "@stencil/core/compiler";
 import { SpawnOptions, WebContainer } from "@webcontainer/api";
 import { files } from "./stencil-container-files";
 
@@ -27,8 +28,15 @@ export async function runStencilInfo(wc: WebContainer) {
   await result.exit;
 }
 
-export async function saveStencilComponentFile(wc: WebContainer, data: string) {
-  await wc.fs.writeFile("component.tsx", data);
+export async function saveStencilComponentFile(wc: WebContainer, filename: string = "component.tsx", data: string) {
+  await wc.fs.writeFile(filename, data);
+}
+
+export async function saveStencilTranspileOptions(
+  wc: WebContainer,
+  data: TranspileOptions
+) {
+  await wc.fs.writeFile("options.json", JSON.stringify(data));
 }
 
 export async function runCompilation(wc: WebContainer, stream: WritableStream) {

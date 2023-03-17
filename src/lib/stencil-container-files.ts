@@ -25,9 +25,15 @@ import { transpileSync } from '@stencil/core/compiler/stencil.js';
 import { readFileSync } from 'fs';
 
 const componentString = String(readFileSync("./component.tsx"));
-const transpiled = transpileSync(componentString);
+const options = JSON.parse(readFileSync("./options.json"));
+
+const transpiled = transpileSync(componentString, options);
 console.log(transpiled.code);
   `,
     },
   },
 };
+
+// the above is kind of hacky! We write a string to the 'disk' within the
+// web container which contains this little shim script we use to kick off
+// transpilation.
