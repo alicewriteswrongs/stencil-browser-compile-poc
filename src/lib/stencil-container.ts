@@ -28,7 +28,7 @@ export async function runStencilInfo(wc: WebContainer) {
   await result.exit;
 }
 
-export async function saveStencilComponentFile(wc: WebContainer, filename: string = "component.tsx", data: string) {
+export async function saveStencilComponentFile(wc: WebContainer, data: string, filename: string = "component.tsx") {
   await wc.fs.writeFile(filename, data);
 }
 
